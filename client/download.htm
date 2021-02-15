@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <script src="https://cdn.jsdelivr.net/npm/webtorrent@latest/webtorrent.min.js"></script>
+<body>
+
+    <input type="text" name="magnetLink" id="magnetLink" placeholder="Paste Magnet URL here!!" >
+    <input type="button" value="Click to download!" onclick="downloadMagnetURL()">
+
+</body>
+    <script>
+        
+    var downloadMagnetURL=()=>{
+        
+        var fileName=document.getElementById('magnetLink').value
+    
+        var client = new WebTorrent()
+
+        // Sintel, a free, Creative Commons movie
+        var torrentId = fileName
+        client.add(torrentId, function (torrent) {
+        // Torrents can contain many files. Let's use the .mp4 file
+        var file = torrent.files.find(function (file) {
+            console.log(file)
+            return file
+        })
+
+        // Display the file by adding it to the DOM.
+        // Supports video, audio, image files, and more!
+        file.appendTo('body')
+        
+        })
+    }
+    </script>
+
+
+</html>
