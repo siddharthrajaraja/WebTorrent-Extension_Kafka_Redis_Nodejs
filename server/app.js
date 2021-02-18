@@ -1,8 +1,9 @@
 const express =require('express')
 const app=express()
 const dotenv=require('dotenv').config()
+const jsonParser=require('body-parser').json()
 
-require('./routes/routes')(app)
+require('./routes/routes')(app,jsonParser)
 
 const server=app.listen(process.env.NODE_SERVER,()=>{
     console.log(`Connected to server: ${process.env.NODE_SERVER}`)
