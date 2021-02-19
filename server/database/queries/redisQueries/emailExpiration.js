@@ -29,7 +29,7 @@ exports.isEmailExpired=async(hashedEmailID)=>{
     }
     catch(e){
         console.log(e);
-        
+        return 0;
     }
 
 

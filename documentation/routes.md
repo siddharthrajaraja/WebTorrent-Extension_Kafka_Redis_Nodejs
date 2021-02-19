@@ -10,7 +10,7 @@
 ```
 RESPONSE :
     * status 200 : OK
-    * status 403 : PAGE EXPIRED!!
+    * status 440 : PAGE EXPIRED!!
 
 ```
 
@@ -33,8 +33,8 @@ RESPONSE :
 
     * status 200 : OK
     * status 201 : USER ALREADY EXISTS!!
-    * status 401 : DATABASE ERROR!!
-    * status 400 : SERVER ERROR!!
+    * status 500 : DATABASE ERROR!!
+    * status 500 : SERVER ERROR!!
 
 
 ```

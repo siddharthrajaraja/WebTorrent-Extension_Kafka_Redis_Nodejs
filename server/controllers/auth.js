@@ -16,10 +16,10 @@ exports.register=async(req,res)=>{
             return res.status(200).json({flag:"SUCCESSFULLY REGISTERED!! Please check your registered EmailID for verification!!"});
         else if(stat==-1)
             return res.status(201).json({flag:"USER ALREADY EXISTS!!"})
-        return res.status(401).json({flag:"DATABASE ERROR!!"})
+        return res.status(500).json({flag:"DATABASE ERROR!!"})
     }
     catch(e){
         console.log(e)
-        return res.status(400).json({flag:"SERVER ERROR!!"})
+        return res.status(500).json({flag:"SERVER ERROR!!"})
     }
 }
