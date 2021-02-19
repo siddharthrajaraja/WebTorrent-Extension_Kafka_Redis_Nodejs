@@ -11,6 +11,8 @@
 RESPONSE :
     * status 200 : OK
     * status 440 : PAGE EXPIRED!!
+    * status 500 : DATABASE ERROR!!
+    
 
 ```
 

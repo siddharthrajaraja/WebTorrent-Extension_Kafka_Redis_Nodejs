@@ -8,6 +8,7 @@ exports.registerUser=async(data)=>{
         if(await userExists(data.emailID))
             return -1;
         data.password=md5(data.password)
+        data.isEmailVerified=false;
         var data=await UserModel.create(data)
         const hashedEmail=md5(data.emailID)
         await setEmailExpiration(hashedEmail,data._id)
