@@ -32,7 +32,7 @@ REQUEST BODY :
 RESPONSE :
 
     * status 200 : OK
-    * status 201 : USER ALREADY EXISTS!!
+    * status 409 : USER ALREADY EXISTS!!
     * status 500 : DATABASE ERROR!!
     * status 500 : SERVER ERROR!!
 
