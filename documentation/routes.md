@@ -12,8 +12,6 @@ RESPONSE :
     * status 200 : OK
     * status 440 : PAGE EXPIRED!!
     * status 500 : DATABASE ERROR!!
-    
-
 ```
 
 ## POST ROUTES :
@@ -32,11 +30,8 @@ REQUEST BODY :
         }
 
 RESPONSE :
-
     * status 200 : OK
     * status 409 : USER ALREADY EXISTS!!
     * status 500 : DATABASE ERROR!!
     * status 500 : SERVER ERROR!!
-
-
 ```

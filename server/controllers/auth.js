@@ -8,6 +8,7 @@
 */
 
 const {registerUser}=require('../database/queries/authQueries/registerUser')
+const md5=require("md5")
 
 exports.register=async(req,res)=>{
     try{
@@ -22,4 +23,17 @@ exports.register=async(req,res)=>{
         console.log(e)
         return res.status(500).json({flag:"SERVER ERROR!!"})
     }
+}
+
+exports.login=async(req,res)=>{
+    req.body.password=md5(req.body.password)
+    req.body.isEmailVerified=true
+    /*try{
+        
+    }
+    catch(e){
+
+    }*/
+    console.log(req.body)
+    return res.status(200).json({flag:"Logged In!!"})
 }
