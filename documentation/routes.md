@@ -1,9 +1,9 @@
 ## GET ROUTES :
 
-- `/fileUpload` : This Route is used in the sender's end to upload a file.
-- `/downLoadFile`: This Route is to download the uploaded file using magnetic URL generated.
+- `/fileUpload` : This Route is used in the sender's end to upload a file. (DEMO)
+- `/downLoadFile`: This Route is to download the uploaded file using magnetic URL generated. (DEMO)
 
-* `/connectSocket` : This Route is to establish Socket Connection for mutiple users at `PORT : 8000`
+* `/connectSocket` : This Route is to establish Socket Connection for mutiple users at `PORT : 8000` (DEMO)
 
 * `/verifyEmail/:hashedEmail` : This is to check if veryEmail page has been expired.
 ```
