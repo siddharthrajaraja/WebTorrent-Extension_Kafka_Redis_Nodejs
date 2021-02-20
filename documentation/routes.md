@@ -6,7 +6,6 @@
 * `/connectSocket` : This Route is to establish Socket Connection for mutiple users at `PORT : 8000`
 
 * `/verifyEmail/:hashedEmail` : This is to check if veryEmail page has been expired.
-
 ```
 RESPONSE :
     * status 200 : OK
@@ -30,8 +29,27 @@ REQUEST BODY :
         }
 
 RESPONSE :
-    * status 200 : OK
+    * status 201 : OK
     * status 409 : USER ALREADY EXISTS!!
     * status 500 : DATABASE ERROR!!
     * status 500 : SERVER ERROR!!
 ```
+
+* `/api/login` : This is to login user after Email Verification.
+
+```
+REQUEST BODY :
+    {
+        "emailID": "xxxxx@gmail.com",
+        "password": "XXXxxYYY"
+    }
+
+RESPONSE :
+    * status 400 : USER NOT FOUND!!
+    * status 202 : EMAIL NOT VERIFIED
+    * status 201 : LOGGED IN!! 
+```
+
+
+
+

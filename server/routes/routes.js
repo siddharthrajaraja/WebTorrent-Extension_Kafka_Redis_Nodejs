@@ -1,11 +1,13 @@
-let {fileUpload}=require('../controllers/upload')
-let {downloadFile}=require('../controllers/download')
-let {connectSocket}=require('../controllers/connectSocket')
-let {register,login}=require('../controllers/auth')
-let {verifyEmail}=require('../controllers/verifyEmail')
-let {errorResponse}=require('../controllers/errorResponse')
+const {serverConn}=require('../controllers/serverConn')
+const {fileUpload}=require('../controllers/upload')
+const {downloadFile}=require('../controllers/download')
+const {connectSocket}=require('../controllers/connectSocket')
+const {register,login}=require('../controllers/auth')
+const {verifyEmail}=require('../controllers/verifyEmail')
+const {errorResponse}=require('../controllers/errorResponse')
 module.exports=(app,jsonParser)=>{
     // GET ROUTES!!
+    app.get('/',serverConn)
     app.get('/fileUpload',fileUpload);
     app.get('/downloadFile',downloadFile)
     app.get('/connectSocket',connectSocket)
