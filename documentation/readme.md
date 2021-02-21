@@ -15,3 +15,7 @@
 # Routes :
 
 - [Click to view Routes Documentation](./routes.md)
+
+# TESTING :
+
+- [Click to know more about testing configuration](./testing.md)

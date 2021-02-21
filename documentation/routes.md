@@ -1,4 +1,55 @@
 ## GET ROUTES :
 
-- `/fileUpload` : This Route is used in the sender's end to upload a file.
-- `/downLoadFile`: This Route is to download the uploaded file using magnetic URL generated.
+- `/fileUpload` : This Route is used in the sender's end to upload a file. (DEMO)
+- `/downLoadFile`: This Route is to download the uploaded file using magnetic URL generated. (DEMO)
+
+* `/connectSocket` : This Route is to establish Socket Connection for mutiple users at `PORT : 8000` (DEMO)
+
+* `/verifyEmail/:hashedEmail` : This is to check if veryEmail page has been expired.
+```
+RESPONSE :
+    * status 200 : OK
+    * status 440 : PAGE EXPIRED!!
+    * status 500 : DATABASE ERROR!!
+```
+
+## POST ROUTES :
+
+- `/api/register` : This Route is meant to register user details who is new in the system. It takes a payload :
+
+```
+REQUEST BODY :
+
+    let userObj=
+        {
+            "firstName":"xxxx",
+            "lastName":"yyyy",
+            "emailID":"xxx@gmail.com",
+            "password":"xxxxxxxx"
+        }
+
+RESPONSE :
+    * status 201 : OK
+    * status 409 : USER ALREADY EXISTS!!
+    * status 500 : DATABASE ERROR!!
+    * status 500 : SERVER ERROR!!
+```
+
+* `/api/login` : This is to login user after Email Verification.
+
+```
+REQUEST BODY :
+    {
+        "emailID": "xxxxx@gmail.com",
+        "password": "XXXxxYYY"
+    }
+
+RESPONSE :
+    * status 400 : USER NOT FOUND!!
+    * status 202 : EMAIL NOT VERIFIED
+    * status 201 : LOGGED IN!! 
+```
+
+
+
+
