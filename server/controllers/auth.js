@@ -10,6 +10,7 @@
 const {registerUser}=require('../database/queries/authQueries/registerUser')
 const md5=require("md5")
 const {getUserLoggedIn}=require('../database/queries/authQueries/getUserLoggedIn')
+const {jwtSign}=require('../middlewares/auth/jwtSign')
 exports.register=async(req,res)=>{
     try{
         const stat=await registerUser(req.body)
@@ -32,5 +33,7 @@ exports.login=async(req,res)=>{
         return res.status(400).json({flag:"USER NOT FOUND!!"})
     if(userDetails.isEmailVerified===false)
         return res.status(202).json({flag:"EMAIL NOT VERIFIED!!"})
-    return res.status(201).json({flag:"LOGGED IN!!"})
+    const token=await jwtSign(req.body)
+    res.cookie(process.env.JWT_TOKEN,token)
+    return res.status(201).json({flag:"LOGGED IN!!",token})
 }

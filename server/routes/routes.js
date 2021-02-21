@@ -5,6 +5,8 @@ const {connectSocket}=require('../controllers/connectSocket')
 const {register,login}=require('../controllers/auth')
 const {verifyEmail}=require('../controllers/verifyEmail')
 const {errorResponse}=require('../controllers/errorResponse')
+const {authenticateUser}=require('../controllers/authenticateUserJWT')
+
 module.exports=(app,jsonParser)=>{
     // GET ROUTES!!
     app.get('/',serverConn)
@@ -12,6 +14,7 @@ module.exports=(app,jsonParser)=>{
     app.get('/downloadFile',downloadFile)
     app.get('/connectSocket',connectSocket)
     app.get('/verifyEmail/:hashedEmailID',verifyEmail)
+    app.get('/authenticate/user',authenticateUser)
     app.get('*',errorResponse)
     // POST ROUTES!!
     app.post('/api/register',jsonParser,register)
