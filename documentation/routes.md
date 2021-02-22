@@ -27,7 +27,7 @@ RESPONSE :
 ```
 REQUEST : comprises of Query string which contains the Email ID of the user, who request to resend email verification link. 
 ```
-*Note : The request Query string will be fetched from the URL currently being sent from the [verificationMail.js](../server/email/verificationmail.js) file. This Query string will never be altered so the text field redering emailID from query string need to be uneditable.*
+*Note : The request Query string will be fetched from the URL currently being sent from the [verificationMail.js](../server/email/verificationMail.js) file. This Query string will never be altered so the text field redering emailID from query string need to be uneditable.*
 
 ## POST ROUTES :
 
