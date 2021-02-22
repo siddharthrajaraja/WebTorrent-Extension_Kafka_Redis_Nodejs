@@ -6,11 +6,20 @@
 * `/connectSocket` : This Route is to establish Socket Connection for mutiple users at `PORT : 8000` (DEMO)
 
 * `/verifyEmail/:hashedEmail` : This is to check if veryEmail page has been expired.
+
 ```
 RESPONSE :
     * status 200 : OK
     * status 440 : PAGE EXPIRED!!
     * status 500 : DATABASE ERROR!!
+```
+
+- `/authenticate/user` : This is to check if logged in User's Session has not been expired!
+
+```
+RESPONSE :
+    * status 200 : OK
+    * status 400 : SESSION EXPIRED!!
 ```
 
 ## POST ROUTES :
@@ -35,7 +44,7 @@ RESPONSE :
     * status 500 : SERVER ERROR!!
 ```
 
-* `/api/login` : This is to login user after Email Verification.
+- `/api/login` : This is to login user after Email Verification.
 
 ```
 REQUEST BODY :
@@ -47,9 +56,5 @@ REQUEST BODY :
 RESPONSE :
     * status 400 : USER NOT FOUND!!
     * status 202 : EMAIL NOT VERIFIED
-    * status 201 : LOGGED IN!! 
+    * status 201 : LOGGED IN!!
 ```
-
-
-
-
