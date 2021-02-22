@@ -22,6 +22,13 @@ RESPONSE :
     * status 400 : SESSION EXPIRED!!
 ```
 
+* `/resend-email-verification-link?emailID=xxxxx@gmail.com` :  This is to resend the email verification link whenever the email link expires.
+
+```
+REQUEST : comprises of Query string which contains the Email ID of the user, who request to resend email verification link. 
+```
+*Note : The request Query string will be fetched from the URL currently being sent from the [verificationmail.js](../server/email/verificationmail.js) file. This Query string will never be altered so the text field redering emailID from query string need to be uneditable.*
+
 ## POST ROUTES :
 
 - `/api/register` : This Route is meant to register user details who is new in the system. It takes a payload :
@@ -57,4 +64,24 @@ RESPONSE :
     * status 400 : USER NOT FOUND!!
     * status 202 : EMAIL NOT VERIFIED
     * status 201 : LOGGED IN!!
+```
+
+* `/api/updatePassword` : This is to update the Password of Registered user!!
+```
+REQUEST BODY :
+    {
+        "emailID": "xxxxx@gmail.com",
+        "password": "XXXxxYYY"
+    }
+RESPONSE :
+    * status 200 : OK
+    * status 400 : USER NOT REGISTERED!!    
+```
+
+* `/api/forgotPassword` : This is to request Forgot Password Email Link!! This link redirects to REACT SERVER later.
+```
+REQUEST BODY :
+    {
+        "emailID": "xxxx@gmail.com"
+    }
 ```
