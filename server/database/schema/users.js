@@ -6,7 +6,8 @@ const userSchema=new Schema({
     "lastName":String,
     "emailID":String,
     "password":String,
-    "isEmailVerified":Boolean
+    "isEmailVerified":Boolean,
+    "hashedEmail":String
 });
 
 module.exports={

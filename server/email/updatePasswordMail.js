@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const md5=require("md5")
 
-exports.sendVerificationEmail = async (emailID,firstName,lastName) => {
+exports.sendPasswordUpdationEmail = async (emailID) => {
     const hashedEmailID=md5(emailID)
     
     let transporter = nodemailer.createTransport({
@@ -20,10 +20,10 @@ exports.sendVerificationEmail = async (emailID,firstName,lastName) => {
     to: emailID, // list of receivers
     bcc: "",
     replyTo: process.env.EMAIL_SENDER,
-    subject: "VERIFICATION EMAIL!!", // Subject line
+    subject: "FORGOT PASSWORD EMAIL!!", // Subject line
     //<a href="${EMAIL_VERIFICATION_REDIRECT_LOCAL}">Click To verify Email</a>
-    text: `Thanks for registering to ${process.env.APP_NAME} ${firstName} ${lastName}.`, // plain text body
-    html: `Thanks for registering to ${process.env.APP_NAME} ${firstName} ${lastName}, <a href="${process.env.EMAIL_VERIFICATION_REDIRECT_LOCAL}/${hashedEmailID}?email=${emailID}">Click To verify Email</a>` // html body
+    text: `Forgot your password of ${process.env.APP_NAME} ${emailID}?`, // plain text body
+    html: `Forgot your password of ${process.env.APP_NAME} ${emailID}? <a href="${process.env.UPDATE_PASSWORD_EMAIL_REDIRECT_LOCAL}?id=${hashedEmailID}&emailID=${emailID}">Click To Update Password</a>` // html body
   });
 
   console.log(info)
