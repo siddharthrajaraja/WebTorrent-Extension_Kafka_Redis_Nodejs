@@ -5,7 +5,7 @@
 
 * `/connectSocket` : This Route is to establish Socket Connection for mutiple users at `PORT : 8000` (DEMO)
 
-* `/verifyEmail/:hashedEmail` : This is to check if veryEmail page has been expired.
+* `/verifyEmail/:hashedEmail?email=xxxx@gmail.com` : This is to check if veryEmail page has been expired.
 
 ```
 RESPONSE :
