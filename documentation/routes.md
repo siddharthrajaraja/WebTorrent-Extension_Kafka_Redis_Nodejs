@@ -20,6 +20,7 @@ RESPONSE :
 RESPONSE :
     * status 200 : OK
     * status 400 : SESSION EXPIRED!!
+    * status 403 : USER NOT LOGGED IN!!
 ```
 
 * `/resend-email-verification-link?emailID=xxxxx@gmail.com` :  This is to resend the email verification link whenever the email link expires.
