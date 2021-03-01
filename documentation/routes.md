@@ -5,7 +5,7 @@
 
 * `/connectSocket` : This Route is to establish Socket Connection for mutiple users at `PORT : 8000` (DEMO)
 
-* `/verifyEmail/:hashedEmail` : This is to check if veryEmail page has been expired.
+* `/verifyEmail/:hashedEmail?email=xxxx@gmail.com` : This is to check if veryEmail page has been expired.
 
 ```
 RESPONSE :
@@ -20,6 +20,7 @@ RESPONSE :
 RESPONSE :
     * status 200 : OK
     * status 400 : SESSION EXPIRED!!
+    * status 403 : USER NOT LOGGED IN!!
 ```
 
 * `/resend-email-verification-link?emailID=xxxxx@gmail.com` :  This is to resend the email verification link whenever the email link expires.
@@ -84,4 +85,22 @@ REQUEST BODY :
     {
         "emailID": "xxxx@gmail.com"
     }
+```
+* `/api/createRoom?creatorID=xxxx@gmail.com` : This is to create a new room initiated by creatorID.
+```
+REQUEST BODY :
+    {
+        "roomName":"sample"
+    }
+RESPONSE :
+    * status 201 : ROOM CREATED 
+      
+      Additional Parameters : 
+        roomID : String
+    
+    * status 401 : USER NOT LOGGED IN!!
+    * status 403 : CREATOR INVALID!!
+    * status 401 : EMAILID && SESSION MISMATCH!!
+    * status 400 : SESSION EXPIRED!!
+    * status 500 : SERVER ERROR!!
 ```
