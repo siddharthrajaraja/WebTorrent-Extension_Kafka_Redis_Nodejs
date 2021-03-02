@@ -1,7 +1,6 @@
 const {jwtDecode}=require('../middlewares/auth/jwtDecode')
 const {getToken}=require('../middlewares/auth/getToken')
 const {getEpochDateTime}=require('../middlewares/EpochDateTime/getEpochDateTime')
-const {}=require('../database/queries/redisQueries/createRoom')
 const {v4}=require('uuid')
 const {createRoomRedis}=require('../database/queries/redisQueries/createRoom')
 const {addUserToRoomRedis}=require('../database/queries/redisQueries/addUserToRoom')
@@ -24,8 +23,8 @@ exports.createRoom=async(req,res)=>{
         return res.status(400).json({flag:"SESSION EXPIRED!!"}) 
     const roomID=v4();
     console.log(`Random ID :${roomID}`)
-    if(await createRoomMongo(req.body,creatorID,roomID)==0||await createRoomRedis(creatorID,roomID)==0||await addUserToRoomRedis(roomID,creatorID)==0){
+    if(await createRoomMongo(req.body,creatorID,roomID)==0||await createRoomRedis(creatorID,roomID,req.body.roomName)==0||await addUserToRoomRedis(roomID,creatorID)==0){
         return res.status(500).json({flag:"SERVER ERROR!!"})
     }
-    res.status(201).json({flag:"ROOM CREATED!!",roomID:roomID})
+    return res.status(201).json({flag:"ROOM CREATED!!",roomID:roomID})
 }
