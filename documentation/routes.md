@@ -46,7 +46,24 @@ RESPONSE :
         ]
 ```
 
+* `/api/addUserToGroup?emailID=xxxx@gmail.com&roomID=9bc1249d-4d91-4d74-bef2-18c08a307bab` : this is to add a user who accepts invites in their emailIDs to a specific roomID , updates the cache if the user is not present in the room.
+
+```
+RESPONSE :
+
+    * status 403 : USER NOT LOGGED IN!!
+    * status 400 : SESSION EXPIRED!!
+    * status 409 : xxxx@gmail.com already exists!! 
+    * status 200 : xxxx@gmail.com added to room!!
+
+
+```
+
 * `/api/roomInfo` : pending!!
+
+
+
+***
 
 ## POST ROUTES :
 

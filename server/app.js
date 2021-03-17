@@ -3,8 +3,11 @@ const app=express()
 const dotenv=require('dotenv').config()
 const jsonParser=require('body-parser').json()
 const cors =require('cors')
+const cookieParser=require('cookie-parser')
 
+app.use(cookieParser())
 app.use(cors())
+
 require('./routes/roomRoutes/routes')(app,jsonParser)
 require('./routes/routes')(app,jsonParser)
 
