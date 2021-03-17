@@ -1,10 +1,15 @@
 const { saddAsync } = require('../../config/redisConnect')
 
 const {setAddAsync}=require('../../config/redisConnect')
-exports.createRoomRedis=async(creatorID,roomID)=>{
+exports.createRoomRedis=async(creatorID,roomID,roomName)=>{
     try{
         const key=creatorID+process.env.ROOMS;
-        await setAddAsync(key,roomID)
+        const roomObj=JSON.stringify({
+            roomID:roomID,
+            roomName:roomName
+        })
+        console.log(roomObj)
+        await setAddAsync(key,roomObj)
         return 1;
     }
     catch(e){

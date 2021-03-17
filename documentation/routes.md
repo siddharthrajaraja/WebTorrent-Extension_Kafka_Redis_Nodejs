@@ -30,6 +30,24 @@ REQUEST : comprises of Query string which contains the Email ID of the user, who
 ```
 *Note : The request Query string will be fetched from the URL currently being sent from the [verificationMail.js](../server/email/verificationMail.js) file. This Query string will never be altered so the text field redering emailID from query string need to be uneditable.*
 
+* `/api/getAllRooms?emailID=siddharthraja9849@gmail.com` : this is to get all rooms with with user with `emailID` is associated with.
+
+*Note : Check wheter cache is being updated or not you can see in flag returned from RESPONSE , use flush all command in redis to flush all keys of redis.* 
+
+```
+RESPONSE :
+    * status 200 : OK
+    Additional Paramters :
+        * allRooms: [
+            {
+                "roomName" : String,
+                "roomID" : String
+            }
+        ]
+```
+
+* `/api/roomInfo` : pending!!
+
 ## POST ROUTES :
 
 - `/api/register` : This Route is meant to register user details who is new in the system. It takes a payload :
@@ -104,3 +122,15 @@ RESPONSE :
     * status 400 : SESSION EXPIRED!!
     * status 500 : SERVER ERROR!!
 ```
+* `/api/mail-room-id` : this is to mail roomIDs to all emailIDs specified to invite users into created group.
+```
+REQUEST BODY : 
+    {
+        "emailIDs":["siddharthraja9849@gmail.com","anitaraja.1994@gmail.com","shrivastavaman171@gmail.com","avengeramulya@gmail.com"],
+        "roomID":"018e50e2-333b-4a4d-80c6-ddf0ac24978e"
+    }
+RESPONSE :  
+    * status 200 : OK
+```
+
+

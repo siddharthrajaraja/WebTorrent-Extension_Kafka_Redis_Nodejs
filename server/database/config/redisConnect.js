@@ -6,11 +6,13 @@ const setexAsync=promisify(redisClient.setex).bind(redisClient)
 const ttlAsync=promisify(redisClient.ttl).bind(redisClient)
 const setAsync=promisify(redisClient.set).bind(redisClient)
 const saddAsync=promisify(redisClient.sadd).bind(redisClient)
+const smembers=promisify(redisClient.smembers).bind(redisClient)
 
 module.exports={
     getAsync:getAsync,
     setexAsync:setexAsync,
     ttlAsync:ttlAsync,
     setAsync:setAsync,
-    setAddAsync:saddAsync
+    setAddAsync:saddAsync,
+    smembers:smembers
 }
