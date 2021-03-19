@@ -33,6 +33,9 @@ exports.login=async(req,res)=>{
         return res.status(400).json({flag:"USER NOT FOUND!!"})
     if(userDetails.isEmailVerified===false)
         return res.status(202).json({flag:"EMAIL NOT VERIFIED!!"})
+    const {firstName,lastName}=userDetails
+    req.body.firstName=firstName
+    req.body.lastName=lastName
     const token=await jwtSign(req.body)
     res.cookie(process.env.JWT_TOKEN,token)
     return res.status(201).json({flag:"LOGGED IN!!",token})
