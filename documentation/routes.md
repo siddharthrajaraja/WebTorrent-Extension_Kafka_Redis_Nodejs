@@ -55,11 +55,9 @@ RESPONSE :
     * status 400 : SESSION EXPIRED!!
     * status 409 : xxxx@gmail.com already exists!! 
     * status 200 : xxxx@gmail.com added to room!!
-
-
 ```
 
-* `/api/roomInfo` : pending!!
+* `/api/roomMemberList` : pending!!
 
 
 
