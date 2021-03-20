@@ -1,5 +1,3 @@
-const { saddAsync } = require('../../config/redisConnect')
-
 const {setAddAsync}=require('../../config/redisConnect')
 exports.createRoomRedis=async(creatorID,roomID,roomName)=>{
     try{
