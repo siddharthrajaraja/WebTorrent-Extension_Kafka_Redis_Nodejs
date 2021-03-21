@@ -57,7 +57,21 @@ RESPONSE :
     * status 200 : xxxx@gmail.com added to room!!
 ```
 
-* `/api/roomMemberList` : pending!!
+* `/api/getRoomMembers?roomID=xxxxx-xxx-xxxx` : this gives a list of all user-emailIDs associated with a specific roomID.
+```
+RESPONSE :
+    * status 403 : USER NOT LOGGED IN!!
+    * status 400 : SESSION EXPIRED!!
+    * status 200 : OK
+    Additional Parameters :
+        * "roomMembers": [
+                "siddharthraja9849@gmail.com",
+                "rajaaz@gmail.com",
+                "amankumar@gmail.com",
+                "amulya@gmail.com",
+                "sampleRaja@gmail.com"
+            ]
+```
 
 
 

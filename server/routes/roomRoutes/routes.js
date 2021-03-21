@@ -6,7 +6,7 @@ const {addUserToRoom}=require('../../controllers/addUserToRoom')
 
 module.exports=(app,jsonParser)=>{
     //GET ROUTES
-    app.get('/api/roomMemberList',roomMemberList)
+    app.get('/api/getRoomMembers',roomMemberList)
     app.get('/api/getAllRooms',getAllRooms)
     app.get('/api/addUserToGroup',addUserToRoom)
     //POST ROUTES
