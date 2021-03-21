@@ -8,6 +8,8 @@ const {createRoomMongo}=require('../database/queries/roomQueries/createRoom')
 
 exports.createRoom=async(req,res)=>{
     const cookies=req.get('cookie');
+    //console.log(req);
+    //console.log("Cookie :",cookies)
     const token=getToken(cookies)
     if(token===null||token===undefined)
         return res.status(401).json({flag:"USER NOT LOGGED IN!!"})
