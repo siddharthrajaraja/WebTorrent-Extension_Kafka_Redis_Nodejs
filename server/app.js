@@ -5,6 +5,8 @@ const jsonParser=require('body-parser').json()
 const cors =require('cors')
 const cookieParser=require('cookie-parser')
 
+app.set('view engine', 'ejs');
+
 const corsOptions ={
     origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
@@ -20,6 +22,7 @@ app.use((req, res, next) => {
 app.use(cookieParser())
 app.use(cors(corsOptions))
 
+require('../client/routes/routes')(app)
 require('./routes/roomRoutes/routes')(app,jsonParser)
 require('./routes/routes')(app,jsonParser)
 

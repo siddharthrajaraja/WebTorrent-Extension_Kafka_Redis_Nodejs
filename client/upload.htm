@@ -11,7 +11,9 @@
 <body>
 
     <input type="file" name="" id="file" onchange="openClient()">
-    
+    <p class="fileURL" id="fileURL">
+
+    </p>
 </body>
 
 <script>
@@ -23,6 +25,7 @@
             
             client.seed(data, function (torrent) {
                 console.log(torrent.magnetURI)
+                document.getElementById('fileURL').innerText=torrent.magnetURI
             })
             
         }
