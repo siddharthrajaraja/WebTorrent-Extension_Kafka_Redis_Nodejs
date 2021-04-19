@@ -7,6 +7,13 @@ const cookieParser=require('cookie-parser')
 
 app.set('view engine', 'ejs');
 
+app.use(
+    '/assets',
+    express.static('assets', {
+      maxAge: process.env.ASSETS_MAXAGE,
+    })
+);
+
 const corsOptions ={
     origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
