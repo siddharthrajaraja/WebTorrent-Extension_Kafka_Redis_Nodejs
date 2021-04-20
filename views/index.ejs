@@ -4,9 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Backup</title>
+    <%-include('../assets/public/materialize.ejs')%>
+    <style>
+        body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: lightgrey;
+    background-image: url("../assets/images/mbs2.jpg");
+    background-size: cover;
+    height: 100vh;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+    </style>
 </head>
 <body>
-    Hello
+    <%-include('./partials/navbar.ejs')%>
+    
+    <main > 
+        <div class="center row">
+            <div class="row">
+                <div class="col s2 m4"></div>
+                <div class="col s8 m4">
+                <div class="card-panel white z-depth-4">
+                    <span class="black-text">
+                        <h4 class="center bold">Multimedia Backup System</h4>
+                        <h6 class="center bold">B.E Project</h6>
+                        <h6 class="center bold">Guided By: Dr.Sangita Chaudhari</h6>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn">Get Started</a>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="row col s12 m6">
+                                <div class="center"><a class="waves-effect waves-light btn">System Design</a></div>
+                            </div>
+                            <div class="row col s12 m6">
+                                <div class="center"><a class="waves-effect waves-light btn">Github Repo</a></div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                </div>
+                <div class="col s2 m4"></div>
+            </div>
+        </div>
+    </main>
+
+    <%-include('./partials/footer.ejs')%>
+
 </body>
 </html>
