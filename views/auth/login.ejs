@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <%-include('../../assets/public/materialize.ejs')%>
+    <style>
+        body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: lightgrey;
+    background-image: url("../assets/images/mbs2.jpg");
+    background-size: cover;
+    height: 100vh;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+    </style>
+</head>
+<body>
+    <%-include('../partials/navbar.ejs')%>
+    
+    <main > 
+      <div class="row">
+      <div class="col s3 m4"></div>
+      <div class="card center col s6 m4 row white">
+        <div>
+          <i class="medium material-icons">lock</i>
+          <h5>Login</h5>
+        </div>
+
+        <div>
+        
+          <form method="POST" id="signup" enctype="multipart/form-data">
+            
+          <div class="row">
+            <div class="col s12">
+              <!-- <label for="email " class="form-label left"> Email </label> -->
+              <input placeholder="Email" type="email" class="validate" name="email" id="email" />
+              <div class="right error-info" id="email-error"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <!-- <label for="email " class="form-label left"> Password </label> -->
+              <input placeholder="Password" type="password" class="validate" name="password" id="password" />
+            </div>
+          </div>
+
+          <div class="row">
+            <a class="s12 waves-effect waves-light btn blue darken-3">Sign In</a>
+          </div>
+
+          <div class="row">
+            <div class="col s6 center">
+              <a class="waves-effect waves-light black-text"><u>Forgot Password?</u></a>
+            </div>
+            <div class="col s6 center">
+              <a class="waves-effect waves-light black-text"><u>Don't have an account?Sign Up</u></a>
+            </div>
+          </div>
+
+          </form>
+        </div>
+
+      </div>
+      <div class="col s3"></div>
+      </div>
+    </main>
+
+    <%-include('../partials/footer.ejs')%>
+
+</body>
+</html>

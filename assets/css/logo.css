@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "LogoFont";
+    src: url("../fonts/RocknRollOne-Regular.ttf") format("ttf"),
+}
+
+.logo{
+    font-family: LogoFont;
+}
+
