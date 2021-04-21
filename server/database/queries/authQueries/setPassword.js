@@ -19,6 +19,8 @@ exports.setPassword=async(data)=>{
         const updateLogs=await UserModel.updateOne(userObj,updateObj)
         if(updateLogs.nModified===1)
             return 1;
+        if(updateLogs.n==1)    
+            return 1;
         return 0;
     }
     catch(e){
