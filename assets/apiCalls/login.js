@@ -4,15 +4,25 @@ async function login(){
         password:document.getElementById('password').value.trim()
     }
     console.log(userObject)
-    const response=await axios.post('/api/login',userObject)
-    console.log(response)
 
-    if(response.status==200){
-        alert(response.data.flag)
-        window.location.href='/main'
-    }
-    else{
-        alert(response.data.flag)
-   }
+    axios.post('/api/login', userObject)
+    .then(function (response) {
+        console.log(response);
+        if(response.status==200)
+        {
+            window.location.href = "/main";
+        }
+        else
+        {
+            console.log('Response Else');
+        }
+      
+    })
+    .catch(function (error) {
+      console.log("Error: ",error);
+    });
+
+    
+    
 
 }
