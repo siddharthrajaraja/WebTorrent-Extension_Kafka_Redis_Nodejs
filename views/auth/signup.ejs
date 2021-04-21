@@ -36,8 +36,6 @@
 
         <div>
         
-          <form method="POST" id="signup" enctype="multipart/form-data">
-
             <div class="row">
                 <div class="col s12">
                   <!-- <label for="name" class="form-label left"> Name </label> -->
@@ -70,7 +68,7 @@
           </div>
 
           <div class="row">
-            <a class="s12 waves-effect waves-light btn blue darken-3">Sign In</a>
+            <button class="s12 waves-effect waves-light btn blue darken-3" onclick="register()" >Sign In</button>
           </div>
 
           <div class="row">
@@ -78,19 +76,22 @@
               <!-- <a class="waves-effect waves-light black-text"><u>Forgot Password?</u></a> -->
             </div>
             <div class="col s6 center">
-              <a class="waves-effect waves-light black-text"><u>Already have an account?Sign in</u></a>
+              <a href="/login" class="waves-effect waves-light black-text"><u>Already have an account?Sign in</u></a>
             </div>
           </div>
 
-          </form>
         </div>
 
       </div>
       <div class="col s3"></div>
       </div>
     </main>
+    
+    <script src="../../assets/apiCalls/register.js">
+
+    </script>
 
     <%-include('../partials/footer.ejs')%>
-
+    
 </body>
 </html>

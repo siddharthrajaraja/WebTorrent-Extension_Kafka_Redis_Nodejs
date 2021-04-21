@@ -94,7 +94,7 @@ REQUEST BODY :
 
 RESPONSE :
     * status 201 : OK
-    * status 409 : USER ALREADY EXISTS!!
+    * status 200 : USER ALREADY EXISTS!!
     * status 500 : DATABASE ERROR!!
     * status 500 : SERVER ERROR!!
 ```
@@ -111,7 +111,7 @@ REQUEST BODY :
 RESPONSE :
     * status 400 : USER NOT FOUND!!
     * status 202 : EMAIL NOT VERIFIED
-    * status 201 : LOGGED IN!!
+    * status 200 : LOGGED IN!!
 ```
 
 * `/api/updatePassword` : This is to update the Password of Registered user!!
@@ -123,7 +123,7 @@ REQUEST BODY :
     }
 RESPONSE :
     * status 200 : OK
-    * status 400 : USER NOT REGISTERED!!    
+    * status 200 : USER NOT REGISTERED!!    
 ```
 
 * `/api/forgotPassword` : This is to request Forgot Password Email Link!! This link redirects to REACT SERVER later.
