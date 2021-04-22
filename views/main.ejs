@@ -23,12 +23,22 @@
             padding: 1em 2.5em;
         }
         .card{
-            border-radius: 25px;
+            border-radius: 10px;
             height: 500px;
             margin: 2.5em 2.5em;
-
         }
-
+        .main-left{
+            overflow: auto;
+        }
+        .main-middle{
+            padding: 1em !important;
+        }
+        .main-right{
+            overflow: auto;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -36,14 +46,14 @@
     
     <main > 
         <div class="row card-container">
-            <div class="col s2 card white">
-
+            <div class="row col s2 card white main-left">
+                <%-include('./partials/serverRooms.ejs')%>
             </div>
-            <div class="col s7 card white">
-
+            <div class="col s7 card white main-middle">
+                <%-include('./partials/serverData.ejs')%>
             </div>
-            <div class="col s2 card white">
-
+            <div class="col s2 card white main-right">
+                <%-include('./partials/serverParticipants.ejs')%>
             </div>
         </div>
     </main>

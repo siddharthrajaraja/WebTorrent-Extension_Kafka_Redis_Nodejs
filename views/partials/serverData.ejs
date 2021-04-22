@@ -1,0 +1,57 @@
+<style>
+    .box{
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: .5em;
+    }
+    .middle{
+        height: 60%;
+    }
+    .bottom{
+
+    }
+</style>
+<div class="top box row">
+    <div class="col s4">
+        <h6>Server Name</h6>
+    </div>
+    <div class="input-field col s4">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+        </select>
+        <label>Month</label>
+      </div>
+      <div class="input-field col s4">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+        </select>
+        <label>Year</label>
+      </div>
+</div>
+<div class="middle box row">
+Kumar
+</div>
+<div class="bottom box center row">
+    <a class="waves-effect waves-light btn blue"><i class="material-icons left">cloud_upload</i>Upload</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {});
+  });
+</script>
