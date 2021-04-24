@@ -23,7 +23,7 @@ exports.sendInvitationEmail = async (emailID,roomID) => {
     subject: "INVITATION EMAIL!!", // Subject line
     //<a href="${EMAIL_VERIFICATION_REDIRECT_LOCAL}">Click To verify Email</a>
     text: `HELLO ${emailID}, please join ${process.env.APP_NAME} new Room given below!! `, // plain text body
-    html: `HELLO ${emailID}, please join ${process.env.APP_NAME} new Room given below!! , <a href="${process.env.ROOM_MAIL_URL}?id=${hashedEmailID}&email=${emailID}&roomID=${roomID}">Click To JOIN GROUP!!</a>` // html body
+    html: `HELLO ${emailID}, please join ${process.env.APP_NAME} new Room given below!! , <a href="${process.env.ROOM_MAIL_URL}?id=${hashedEmailID}&emailID=${emailID}&roomID=${roomID}">Click To JOIN GROUP!!</a>` // html body
   });
 
   console.log(info)
