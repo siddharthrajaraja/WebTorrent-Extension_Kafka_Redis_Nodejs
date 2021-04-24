@@ -1,4 +1,4 @@
-const {homepage, login, signup, forgotPassword, updatePassword, verifyEmail}=require('../controllers/homepage')
+const {homepage, login, signup, forgotPassword, updatePassword, verifyEmail, main}=require('../controllers/homepage')
 module.exports=(app)=>{
     app.get('/homepage',homepage);
 
@@ -11,4 +11,6 @@ module.exports=(app)=>{
     app.get('/updatePassword',updatePassword);
 
     app.get('/verifyEmail',verifyEmail);
+
+    app.get('/main',main);
 }

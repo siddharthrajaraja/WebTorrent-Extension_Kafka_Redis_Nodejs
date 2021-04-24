@@ -3485,6 +3485,11 @@
     "jwa" "^1.4.1"
     "safe-buffer" "^5.0.1"
 
+"jwt-decode@^3.1.2":
+  "integrity" "sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A=="
+  "resolved" "https://registry.npmjs.org/jwt-decode/-/jwt-decode-3.1.2.tgz"
+  "version" "3.1.2"
+
 "k-bucket@^5.0.0":
   "integrity" "sha512-Fac7iINEovXIWU20GPnOMLUbjctiS+cnmyjC4zAUgvs3XPf1vo9akfCHkigftSic/jiKqKl+KA3a/vFcJbHyCg=="
   "resolved" "https://registry.npmjs.org/k-bucket/-/k-bucket-5.1.0.tgz"
@@ -3590,12 +3595,12 @@
   "version" "1.1.6"
 
 "load-ip-set@^2.1.2":
-  "integrity" "sha512-AgO3AGwWPru+tJboq0l2+hIkFqbAE3tbG74z2SCpt+c3h0PFI3t2mHamS707OzSc3b+GBVBKjZxPFz97YZNisA=="
-  "resolved" "https://registry.npmjs.org/load-ip-set/-/load-ip-set-2.1.2.tgz"
-  "version" "2.1.2"
+  "integrity" "sha512-G3hQXehU2LTOp52e+lPffpK4EvidfjwbvHaGqmFcp4ptiZagR4xFdL+D08kMX906dxeqZyWhfonEjdUxrWcldg=="
+  "resolved" "https://registry.npmjs.org/load-ip-set/-/load-ip-set-2.2.1.tgz"
+  "version" "2.2.1"
   dependencies:
     "ip-set" "^2.1.0"
-    "netmask" "^1.0.6"
+    "netmask" "^2.0.1"
     "once" "^1.4.0"
     "simple-get" "^4.0.0"
     "split" "^1.0.1"
@@ -4032,10 +4037,10 @@
   "resolved" "https://registry.npmjs.org/negotiator/-/negotiator-0.6.2.tgz"
   "version" "0.6.2"
 
-"netmask@^1.0.6":
-  "integrity" "sha1-ICl+idhvb2QA8lDZ9Pa0wZRfzTU="
-  "resolved" "https://registry.npmjs.org/netmask/-/netmask-1.0.6.tgz"
-  "version" "1.0.6"
+"netmask@^2.0.1":
+  "integrity" "sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg=="
+  "resolved" "https://registry.npmjs.org/netmask/-/netmask-2.0.2.tgz"
+  "version" "2.0.2"
 
 "next-event@^1.0.0":
   "integrity" "sha1-53eKzeLlWALgrRh5w5z2917aYdg="

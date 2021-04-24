@@ -21,3 +21,7 @@ exports.updatePassword = (req, res) => {
 exports.verifyEmail = (req, res) => {
     res.render('auth/verifyEmail.ejs');
 }
+
+exports.main = (req, res) => {
+    res.render('main.ejs');
+}

@@ -1,0 +1,54 @@
+<ul id="serverOwner" class="col s12 collection blue-grey lighten-5">
+     
+</ul>
+
+<h6 class="center">Members</h6>
+<ul id="serverParticipant" class="col s12 collection  blue-grey lighten-5">
+
+</ul>
+
+<div class="center">
+    <a data-target="addParticipantModal" class="waves-effect waves-light btn blue modal-trigger"><i class="material-icons left">add</i>Add New Server</a>
+</div>
+
+<!-- Modal Structure -->
+<div id="addParticipantModal" class="modal">
+    <div class="modal-content">
+        <h4>Add New Member</h4>
+        <div class="input-field col s8">
+            <input placeholder="Email" id="email" type="email" class="validate">
+            <label for="email">Email</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-light btn" onclick="AddParticipants()">Add</a>
+    </div>
+  </div>
+
+  <script>
+
+function AddParticipants(){
+
+    const url = "/api/mail-room-id";
+    const roomId = Cookies.get('roomId');
+    console.log("vals",url,roomId);
+    
+    const userObj = {
+        "emailIDs":[document.getElementById("email").value],
+        "roomID": roomId
+    }
+
+    const axiosConfig={
+    withCredentials:true
+    }
+
+    axios.post(url,userObj,axiosConfig)
+    .then(response=>{
+        console.log("qwsderfgtyh");
+    })
+    .catch(err=>{
+    console.log("err",err)
+    })
+}
+
+  </script>

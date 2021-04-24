@@ -1,0 +1,131 @@
+<ul id="user" class="col s12 collection blue-grey lighten-5">
+    <li class="collection-item avatar blue-grey lighten-5">
+        <img src="images/yuna.jpg" alt="" class="circle grey">
+        <span id="username" class="title"></span>
+    </li>  
+</ul>
+
+<h6 class="center">Backup Servers</h6>
+<ul id="serverList" class="col s12 collection  blue-grey lighten-5">
+    
+</ul>
+<div class="center row">
+    <a data-target="addServerModal" class="waves-effect waves-light btn blue modal-trigger"><i class="material-icons left">add</i>Add New Server</a>
+</div>
+
+<!-- Modal Structure -->
+<div id="addServerModal" class="modal">
+  <div class="modal-content">
+    <h4>Create New Server</h4>
+    <div class="input-field col s8">
+        <input placeholder="Server Name" id="server_name" type="text" class="validate">
+        <label for="first_name">Server Name</label>
+    </div>
+    
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-light btn" onclick="CreateRoom()">Create Server</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="../../assets/apiCalls/jwt-decode.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {});
+  });
+
+    const token = Cookies.get('Web_Torrent_Token');
+    var decoded = jwt_decode(token); 
+    document.getElementById("username").innerText = decoded.firstName + " " + decoded.lastName;
+    console.log("Cook: ",Cookies.get('Web_Torrent_Token'),"Deck: ",decoded);
+    
+    function getRoomMemberList(roomid,roomName)
+    {
+        Cookies.set('roomId',roomid);
+      const url = "/api/getRoomMembers?roomID="+roomid;
+      console.log("api url: ", url);
+      
+      const userObj = {
+        roomID: roomid
+      }
+      
+      const axiosConfig={
+        withCredentials:true
+      }
+
+      document.getElementById("serverOwner").innerHTML = `
+        <li class="collection-item avatar blue-grey lighten-5">
+            <img src="images/yuna.jpg" alt="" class="circle grey">
+            <span class="title">`+roomName+`</span>
+        </li>
+      `;
+      
+
+      document.getElementById("serverParticipant").innerHTML = '';
+      axios.get(url,axiosConfig).then((response) => {
+
+        for(var i=0;i<response.data.roomMembers.length;i++)
+            {
+                document.getElementById("serverParticipant").innerHTML += `<li class="collection-item avatar blue-grey lighten-5" id=`+ response.data.roomMembers[i] +`>
+                            <i class="material-icons circle green">insert_chart</i>
+                            <span class="title">` + response.data.roomMembers[i] + `</span>
+                            <p>First Line</p>
+                        </li>
+                        `;
+                
+            }      
+      })
+    }
+
+    function getAllRooms()
+    {
+      const url = "/api/getAllRooms?emailID="+decoded.emailID;
+      console.log("api url: ", url);
+      
+      const userObj = {
+        roomName: 'masti hai mizaz me '
+      }
+      
+      const axiosConfig={
+        withCredentials:true
+      }
+      document.getElementById("serverList").innerHTML = '';
+        axios.get(url,axiosConfig).then((response) => {
+            for(var i=0;i<response.data.allRooms.length;i++)
+            {
+                document.getElementById("serverList").innerHTML += `<li class="collection-item avatar blue-grey lighten-5" id=`+ response.data.allRooms[i].roomID +` onclick="getRoomMemberList('`+response.data.allRooms[i].roomID+`','`+response.data.allRooms[i].roomName+`')">
+                            <i class="material-icons circle green">insert_chart</i>
+                            <span class="title">` + response.data.allRooms[i].roomName + `</span>
+                            <p>First Line</p>
+                        </li>`;    
+            }
+        })
+    }
+    getAllRooms();
+
+    function CreateRoom(){
+
+        const url = "/api/createRoom?creatorID="+decoded.emailID;
+        const roomName = document.getElementById("server_name").value;
+
+        const userObj = {
+        roomName: roomName
+        }
+
+        const axiosConfig={
+        withCredentials:true
+        }
+
+        axios.post(url,userObj,axiosConfig)
+        .then(response=>{
+        getAllRooms();
+        })
+        .catch(err=>{
+        console.log(err)
+        })
+    }
+
+
+</script>
