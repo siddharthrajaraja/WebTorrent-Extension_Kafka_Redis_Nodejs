@@ -6,6 +6,7 @@ const {getToken}=require('../middlewares/auth/getToken')
 const {addUserToRoomMongoCreateCache}=require('../database/queries/roomQueries/addUserToRoomCreateCache')
 const {userExistsInRoomRedis}=require('../database/queries/redisQueries/checkUserInRoom')
 exports.addUserToRoom=async(req,res)=>{
+    console.log("Query :",req.query)
     const {emailID,roomID}=req.query
     const cookies=req.get('cookie');
     const token=getToken(cookies)
@@ -20,8 +21,8 @@ exports.addUserToRoom=async(req,res)=>{
     if(await userExistsInRoomRedis(roomID,emailID)){
         return res.status(409).json({"flag":emailID+" already exists!!"})
     }
-
-    await addUserToRoomMongoCreateCache(roomID,emailID)
+    console.log("\nhere\n")
+    console.log(await addUserToRoomMongoCreateCache(roomID,emailID))
 
     res.status(200).json({"flag":`${emailID} added to room!!`})
 }
