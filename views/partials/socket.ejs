@@ -1,0 +1,45 @@
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="../../assets/apiCalls/jwt-decode.js"></script>
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+    <script>
+        /**
+         * connected-> room . roomID -> emit "${emailID} is connected  green "
+         * send_file -> roomID, senderID, date, magnetURL => emit 
+         * disconnect -> room . roomID -> emit "${emailID} is disconnected  green"
+        **/
+        const socket=io();
+        function socketImplementation(roomId,roomName)
+        {
+            
+            
+            console.log(socket)
+            socket.connect('http://localhost:8000')
+            console.log("userobj: ",decoded)
+            
+            socket.emit('join_room',{userObj:decoded,roomID:roomId,roomName:roomName})
+        }
+        console.log("ass");
+        socket.on('joined_room',(data)=>{
+                console.log("asert",data);
+                alert(data)
+            })
+        
+        // var sendUsername=()=>{
+        //     let data=document.getElementById('username').value
+        //     socket.emit('change_name',{username:data})
+        //     console.log("newUsername :",socket.username)
+        // }
+        
+        // socket.on('new_message',(data)=>{
+        //     console.log(data)
+        // })
+
+        // var sendTypingMessage=()=>{
+
+        //     socket.emit('typing')
+
+        // }
+
+        //socket.on('typing',(data)=>{console.log(data.username+"is typing!!")})
+
+    </script>

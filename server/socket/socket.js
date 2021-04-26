@@ -11,21 +11,26 @@ module.exports=(server)=>{
         
         console.log("Connected user")
         
-        socket.on('change_name',(data)=>{
-            console.log(data)
-            socket.username=data.username
-            console.log("New user :",socket.username)
-            // this broadcasts message to everyone!
-            io.sockets.emit('new_message',{message:"Thanks for connecting!!",username:socket.username})
-        
+        socket.on('join_room',({userObj,roomID,roomName})=>{
+            socket.join(roomID)
+            let message=userObj.emailID+" Connected to Room :"+roomName
+            socket.to(roomID).emit('joined_room',message)
         })
-        
-        socket.on('typing',(data)=>{
-            // this broadcast message except selg
-            socket.broadcast.emit('typing',{username:socket.username})
-        })
-        
 
+        // socket.on('change_name',(data)=>{
+        //     console.log(data)
+        //     socket.username=data.username
+        //     console.log("New user :",socket.username)
+        //     // this broadcasts message to everyone!
+        //     io.sockets.emit('new_message',{message:"Thanks for connecting!!",username:socket.username})
+        
+        // })
+        
+        // socket.on('typing',(data)=>{
+        //     // this broadcast message except selg
+        //     socket.broadcast.emit('typing',{username:socket.username})
+        // })
+        
     })
 
 }
