@@ -16,6 +16,11 @@ module.exports=(server)=>{
             let message=userObj.emailID+" Connected to Room :"+roomName
             socket.to(roomID).emit('joined_room',message)
         })
+        
+        socket.on('sending_file',({senderObj,roomID,magnetURL})=>{
+            console.log("Received ur file");
+            socket.to(roomID).emit('share_file',magnetURL)
+        })
 
         // socket.on('change_name',(data)=>{
         //     console.log(data)

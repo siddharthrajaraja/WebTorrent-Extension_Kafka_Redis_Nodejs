@@ -45,11 +45,45 @@
 <div class="middle box row">
 Kumar
 </div>
-<div class="bottom box center row">
-    <a class="waves-effect waves-light btn blue"><i class="material-icons left">cloud_upload</i>Upload</a>
-</div>
+  <div class="file-field input-field">
+    <div class="btn blue">
+      <i class="material-icons left">cloud_upload</i>
+      Upload
+      <input id="upFile" type="file" onchange="handleFilesUpload(event)">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
+  </div>
 
 <script>
+  
+async function handleFilesUpload(event) {
+
+const uploadFiles = event.target.files;
+
+    try{
+            var client = new WebTorrent()
+
+            var files = document.querySelector('input[type=file]').files;
+
+            var roomId = Cookies.get('roomId');
+            for (var i = 0; i < event.target.files.length; i++) {
+              console.log("abc",i,files[i]);
+              client.seed(files[i], function (torrent) {
+              console.log("torrent",i,torrent.magnetURI)
+              socket.emit('sending_file',{senderObj:decoded,roomID:roomId,magnetURL:torrent.magnetURI})
+
+            })
+        }
+      
+    } 
+    catch(e)
+    {
+        console.log("Terminated!!")
+    }
+  }
+
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems, {});

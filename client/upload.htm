@@ -7,7 +7,6 @@
     <title>Uploader</title>
 </head>
     <script src="https://cdn.jsdelivr.net/npm/webtorrent@latest/webtorrent.min.js"></script>
-   
 <body>
 
     <input type="file" name="" id="file" onchange="openClient()">
@@ -19,15 +18,13 @@
 <script>
     try{
         var openClient=()=>{
-            var client = new WebTorrent()
-            const data=document.getElementById('file').files
-            console.log("Here")
+            var client = new WebTorrent();
+            const data = document.getElementById('file').files;
             
             client.seed(data, function (torrent) {
-                console.log(torrent.magnetURI)
-                document.getElementById('fileURL').innerText=torrent.magnetURI
+                console.log(torrent.magnetURI);
+                document.getElementById('fileURL').innerText=torrent.magnetURI;
             })
-            
         }
     }
     catch(e){

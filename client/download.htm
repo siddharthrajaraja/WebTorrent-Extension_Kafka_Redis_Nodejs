@@ -23,10 +23,14 @@
 
         // Sintel, a free, Creative Commons movie
         var torrentId = fileName
+
         client.add(torrentId, function (torrent) {
+        console.log(
+            'bef add',client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
+
         // Torrents can contain many files. Let's use the .mp4 file
         var file = torrent.files.find(function (file) {
-            console.log(file.downloaded)
+            console.log(file.downloaded,client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
 
             return file
         })
