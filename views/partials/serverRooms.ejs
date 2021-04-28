@@ -28,16 +28,12 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<script src="../../assets/apiCalls/jwt-decode.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, {});
   });
 
-    const token = Cookies.get('Web_Torrent_Token');
-    var decoded = jwt_decode(token); 
     document.getElementById("username").innerText = decoded.firstName + " " + decoded.lastName;
     console.log("Cook: ",Cookies.get('Web_Torrent_Token'),"Deck: ",decoded);
     
@@ -77,6 +73,8 @@
                 
             }      
       })
+
+      socketImplementation(roomid,roomName);
     }
 
     function getAllRooms()
