@@ -14,9 +14,12 @@
 
 </body>
     <script>
-        
+    const fs=require('fs')
+
+    const DIRECTORY_LINUX=`/home/siddharth/Documents/Projects/css-portfolio/`
+
     var downloadMagnetURL=()=>{
-        
+
         var fileName=document.getElementById('magnetLink').value
     
         var client = new WebTorrent()
@@ -35,6 +38,16 @@
             return file
         })
         
+        console.log("Here i am getting buffer")
+
+        file.getBuffer((err,buffer)=>{
+            if(err) throw err;
+            console.log(buffer)
+            
+            fs.appendFileSync(DIRECTORY_LINUX+'/'+file.name,buffer)
+            console.log("contects :",fs.readFileSync(file.name, "utf8"))
+            console.log("after appending :",fs)
+        })
 
         file.getBlobURL(function (err, url) {
             if (err) throw err
@@ -53,9 +66,6 @@
         })
     }
     </script>
-    <script>
-        const electron=require('electron')
-        console.log(electron)
-    </script>
+
 
 </html>

@@ -19,6 +19,7 @@ module.exports=(server)=>{
         
         socket.on('sending_file',({senderObj,roomID,magnetURL})=>{
             console.log("Received ur file");
+            console.log(senderObj,roomID,magnetURL)
             socket.to(roomID).emit('share_file',magnetURL)
         })
 
