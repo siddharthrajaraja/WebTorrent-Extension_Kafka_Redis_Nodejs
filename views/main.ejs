@@ -55,6 +55,7 @@
     <script> 
         let token = Cookies.get('Web_Torrent_Token');
         var decoded = jwt_decode(token);
+        const socket=io();
     </script>
     <main > 
         <%-include('./partials/socket.ejs')%>

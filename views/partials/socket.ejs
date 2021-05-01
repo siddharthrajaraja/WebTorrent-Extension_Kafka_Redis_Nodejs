@@ -1,10 +1,60 @@
     <script>
+        const fs=require('fs')
+
+        const DIRECTORY_LINUX=`/home/siddharth/Documents/Projects/css-portfolio/`
+        const DIRECTORY_WIN=`C:\\electronProject\\`
+
+        function downloadMagnetURL(fileName){
+            var client = new WebTorrent()
+
+            // Sintel, a free, Creative Commons movie
+            var torrentId = fileName
+
+            client.add(torrentId, function (torrent) {
+            
+            // Torrents can contain many files. Let's use the .mp4 file
+            var file = torrent.files.find(function (file) {
+                console.log("asdfg",file.downloaded,client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
+
+                return file
+            })
+        
+            file.getBuffer((err,buffer)=>{
+                if(err) throw err;
+                console.log(buffer)
+                
+                fs.appendFileSync(DIRECTORY_WIN+file.name,buffer)
+                console.log("contects :",fs.readFileSync(file.name, "utf8"))
+                console.log("after appending :",fs)
+            })
+
+            file.getBlobURL(function (err, url) {
+                if (err) throw err
+                var a = document.createElement('a')
+                a.download = file.name
+                a.href = url
+                a.textContent = 'Download ' + file.name
+                document.body.appendChild(a)
+            })
+
+            // Display the file by adding it to the DOM.
+            // Supports video, audio, image files, and more!
+            console.log(typeof(file))
+
+            var div = document.createElement("div");
+            file.appendTo(div);
+            
+            div.classList.add("userdata");
+            document.getElementById("uploadData").appendChild(div);
+            
+            })
+    }
         /**
          * connected-> room . roomID -> emit "${emailID} is connected  green "
          * send_file -> roomID, senderID, date, magnetURL => emit 
          * disconnect -> room . roomID -> emit "${emailID} is disconnected  green"
         **/
-        const socket=io();
+        
         function socketImplementation(roomId,roomName)
         {
             
@@ -15,7 +65,7 @@
             
             socket.emit('join_room',{userObj:decoded,roomID:roomId,roomName:roomName})
         }
-        console.log("ass");
+
         socket.on('joined_room',(data)=>{
                 console.log("asert",data);
                 alert(data)
@@ -23,7 +73,7 @@
 
         socket.on('share_file',(magnetUrl)=>{
             console.log("MagnetLink",magnetUrl);
-            alert(magnetUrl);
+            downloadMagnetURL(magnetUrl);
         })
         
         // var sendUsername=()=>{

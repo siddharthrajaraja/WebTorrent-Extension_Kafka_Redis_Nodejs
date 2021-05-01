@@ -17,6 +17,7 @@
     const fs=require('fs')
 
     const DIRECTORY_LINUX=`/home/siddharth/Documents/Projects/css-portfolio/`
+    const DIRECTORY_WIN=`C:\\electronProject\\`
 
     var downloadMagnetURL=()=>{
 
@@ -44,7 +45,7 @@
             if(err) throw err;
             console.log(buffer)
             
-            fs.appendFileSync(DIRECTORY_LINUX+'/'+file.name,buffer)
+            fs.appendFileSync(DIRECTORY_WIN+file.name,buffer)
             console.log("contects :",fs.readFileSync(file.name, "utf8"))
             console.log("after appending :",fs)
         })
