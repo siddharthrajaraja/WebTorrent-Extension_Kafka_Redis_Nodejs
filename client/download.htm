@@ -7,45 +7,63 @@
     <title>Downloader</title>
 </head>
     <script src="https://cdn.jsdelivr.net/npm/webtorrent@latest/webtorrent.min.js"></script>
-<body>
+<body>  
 
+    <input type="text" id="folderName" placeholder="Enter Folder Name (RoomID)">
+
+    <input type="text" id="fileName" placeholder="Enter File name"> <br> <br>
     <input type="text" name="magnetLink" id="magnetLink" placeholder="Paste Magnet URL here!!" >
     <input type="button" value="Click to download!" onclick="downloadMagnetURL()">
 
 </body>
     <script>
-    const fs=require('fs')
 
-    const DIRECTORY_LINUX=`/home/siddharth/Documents/Projects/css-portfolio/`
+        const fs=require('fs')
 
-    var downloadMagnetURL=()=>{
+        var createDirectory=(dir)=>{
+            if (!fs.existsSync(dir)){
+                fs.mkdirSync(dir);
+            }
+        }
+    </script>
+    <script>
+    
+    async function downloadMagnetURL(){
+        const enterFileName=document.getElementById('fileName').value
+        console.log("file name is :",enterFileName)
+        const enterFolderName=document.getElementById('folderName').value
+        let DIRECTORY_LINUX=`/home/siddharth/Documents/Projects`
+
 
         var fileName=document.getElementById('magnetLink').value
+        
     
         var client = new WebTorrent()
 
         // Sintel, a free, Creative Commons movie
         var torrentId = fileName
 
-        client.add(torrentId, function (torrent) {
+        client.add(torrentId, async function (torrent) {
         console.log(
             'bef add',client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
 
         // Torrents can contain many files. Let's use the .mp4 file
-        var file = torrent.files.find(function (file) {
+        var file = await torrent.files.find(function (file) {
             console.log(file.downloaded,client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
 
             return file
         })
         
         console.log("Here i am getting buffer")
-
+        console.log("here is file :",file)
         file.getBuffer((err,buffer)=>{
             if(err) throw err;
             console.log(buffer)
-            
-            fs.appendFileSync(DIRECTORY_LINUX+'/'+file.name,buffer)
-            console.log("contects :",fs.readFileSync(file.name, "utf8"))
+            createDirectory(DIRECTORY_LINUX+'/'+enterFolderName)
+            DIRECTORY_LINUX=DIRECTORY_LINUX+'/'+enterFolderName
+            console.log("Path :",DIRECTORY_LINUX+'/'+enterFileName)
+            fs.appendFileSync(DIRECTORY_LINUX+'/'+enterFileName,buffer)
+            console.log("contects :",fs.readFileSync(enterFileName, "utf8"))
             console.log("after appending :",fs)
         })
 

@@ -20,7 +20,8 @@
         var openClient=()=>{
             var client = new WebTorrent();
             const data = document.getElementById('file').files;
-            
+            console.log("data is :",data)
+            console.log("fileName :",data[0].name)
             client.seed(data, function (torrent) {
                 console.log(torrent.magnetURI);
                 document.getElementById('fileURL').innerText=torrent.magnetURI;
