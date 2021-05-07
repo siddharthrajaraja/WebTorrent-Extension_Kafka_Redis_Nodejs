@@ -17,10 +17,10 @@ module.exports=(server)=>{
             socket.to(roomID).emit('joined_room',message)
         })
         
-        socket.on('sending_file',({senderObj,roomID,magnetURL})=>{
+        socket.on('sending_file',({senderObj,roomID,magnetURL,fileName})=>{
             console.log("Received ur file");
-            console.log(senderObj,roomID,magnetURL)
-            socket.to(roomID).emit('share_file',magnetURL)
+            console.log(senderObj,roomID,magnetURL,fileName);
+            socket.to(roomID).emit('share_file',{'magnetURL':magnetURL,'fileName':fileName})
         })
 
         // socket.on('change_name',(data)=>{

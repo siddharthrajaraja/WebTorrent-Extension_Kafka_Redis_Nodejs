@@ -40,6 +40,7 @@
     function getRoomMemberList(roomid,roomName)
     {
         Cookies.set('roomId',roomid);
+        Cookies.set('roomName',roomName);
       const url = "/api/getRoomMembers?roomID="+roomid;
       console.log("api url: ", url);
       

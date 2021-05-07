@@ -75,11 +75,12 @@ const uploadFiles = event.target.files;
             var files = document.querySelector('input[type=file]').files;
             console.log("Files:",files);
             var roomId = Cookies.get('roomId');
+            var roomName = Cookies.get('roomName');
             for (var i = 0; i < event.target.files.length; i++) {
               console.log("abc",i,files[i]);
               client.seed(files[i], function (torrent) {
               console.log("torrent",i,torrent.magnetURI)
-              socket.emit('sending_file',{senderObj:decoded,roomID:roomId,magnetURL:torrent.magnetURI})
+              socket.emit('sending_file',{senderObj:decoded,roomID:roomId,magnetURL:torrent.magnetURI,fileName:files[0].name})
             })
         }
       

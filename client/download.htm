@@ -15,11 +15,14 @@
     <input type="text" name="magnetLink" id="magnetLink" placeholder="Paste Magnet URL here!!" >
     <input type="button" value="Click to download!" onclick="downloadMagnetURL()">
 
+    <input type="text" id="logs">
+    <input type="button" value="Logs" onclick="editLogs()">
+
 </body>
     <script>
 
     const DIRECTORY_LINUX=`/home/siddharth/Documents/Projects/css-portfolio/`
-    const DIRECTORY_WIN=`C:\\electronProject\\`
+    const DIRECTORY_WIN=`C:\\electronProject`
         const fs=require('fs')
 
         var createDirectory=(dir)=>{
@@ -30,17 +33,25 @@
         }
     </script>
     <script>
+    function editLogs()
+    {
+        var log = document.getElementById("logs").value;
+        fs.appendFile('`C:\\electronProject\\datalogs.txt`',log,(err)=>{
+            if (err) throw err;
+            console.log("logged data in");
+        });
+    }
     
     async function downloadMagnetURL(){
+        let DIRECTORY_WIN=`C:\\electronProject`
+    
         const enterFileName=document.getElementById('fileName').value
         console.log("file name is :",enterFileName)
         const enterFolderName=document.getElementById('folderName').value
         let DIRECTORY_LINUX=`/home/siddharth/Documents/Projects`
 
-
         var fileName=document.getElementById('magnetLink').value
-        
-    
+
         var client = new WebTorrent()
 
         // Sintel, a free, Creative Commons movie
@@ -67,10 +78,10 @@
             //fs.appendFileSync(DIRECTORY_WIN+file.name,buffer)
             //console.log("contects :",fs.readFileSync(file.name, "utf8"))
 
-            createDirectory(DIRECTORY_LINUX+'/'+enterFolderName)
-            DIRECTORY_LINUX=DIRECTORY_LINUX+'/'+enterFolderName
-            console.log("Path :",DIRECTORY_LINUX+'/'+enterFileName)
-            fs.appendFileSync(DIRECTORY_LINUX+'/'+enterFileName,buffer)
+            createDirectory(DIRECTORY_WIN+'\\'+enterFolderName)
+            DIRECTORY_WIN=DIRECTORY_WIN+'\\'+enterFolderName
+            console.log("Path :",DIRECTORY_WIN+'\\'+enterFileName)
+            fs.appendFileSync(DIRECTORY_WIN+'\\'+enterFileName,buffer)
             console.log("after appending :",fs)
         })
 
@@ -90,6 +101,56 @@
         
         })
     }
+
+    /*
+        function downloadMagnetURL(fileName)
+        {
+            var client = new WebTorrent()
+
+            // Sintel, a free, Creative Commons movie
+            var torrentId = fileName
+
+            client.add(torrentId, function (torrent) {
+            
+            // Torrents can contain many files. Let's use the .mp4 file
+            var file = torrent.files.find(function (file) {
+                console.log("asdfg",file.downloaded,client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
+
+                return file
+            })
+        
+            file.getBuffer((err,buffer)=>{
+                if(err) throw err;
+                console.log(buffer)
+                
+                fs.appendFileSync(DIRECTORY_WIN+file.name,buffer)
+                console.log("contects :",fs.readFileSync(file.name, "utf8"))
+                console.log("after appending :",fs)
+            })
+
+            file.getBlobURL(function (err, url) {
+                if (err) throw err
+                var a = document.createElement('a')
+                a.download = file.name
+                a.href = url
+                a.textContent = 'Download ' + file.name
+                document.body.appendChild(a)
+            })
+
+            // Display the file by adding it to the DOM.
+            // Supports video, audio, image files, and more!
+            console.log(typeof(file))
+
+            var div = document.createElement("div");
+            file.appendTo(div);
+            
+            div.classList.add("userdata");
+            document.getElementById("uploadData").appendChild(div);
+            
+            })
+        }
+        */
+
     </script>
 
 
