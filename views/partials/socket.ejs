@@ -4,51 +4,75 @@
         const DIRECTORY_LINUX=`/home/siddharth/Documents/Projects/css-portfolio/`
         const DIRECTORY_WIN=`C:\\electronProject\\`
 
-        function downloadMagnetURL(fileName){
-            var client = new WebTorrent()
+        var createDirectory=(dir)=>{
+            console.log("Creating :",dir)
+            if (!fs.existsSync(dir)){
+                fs.mkdirSync(dir);
+            }
+        }
 
-            // Sintel, a free, Creative Commons movie
-            var torrentId = fileName
+        async function downloadMagnetURL(magnetURL,fileName){
+        let DIRECTORY_WIN=`C:\\electronProject`
+    
+        const folderName=Cookies.get('roomName');
 
-            client.add(torrentId, function (torrent) {
-            
-            // Torrents can contain many files. Let's use the .mp4 file
-            var file = torrent.files.find(function (file) {
-                console.log("asdfg",file.downloaded,client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
+        let DIRECTORY_LINUX=`/home/siddharth/Documents/Projects`
 
-                return file
-            })
+        var client = new WebTorrent()
+
+        // Sintel, a free, Creative Commons movie
+        var torrentId = magnetURL
+
+        client.add(torrentId, async function (torrent) {
+        console.log(
+            'bef add',client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
+
+        // Torrents can contain many files. Let's use the .mp4 file
+        var file = await torrent.files.find(function (file) {
+            console.log(file.downloaded,client.downloadSpeed, client.uploadSpeed, client.ratio, client.progress)
+
+            return file
+        })
         
-            file.getBuffer((err,buffer)=>{
-                if(err) throw err;
-                console.log(buffer)
-                
-                fs.appendFileSync(DIRECTORY_WIN+file.name,buffer)
-                console.log("contects :",fs.readFileSync(file.name, "utf8"))
-                console.log("after appending :",fs)
-            })
+        console.log("Here i am getting buffer")
+        console.log("here is file :",file)
+        file.getBuffer((err,buffer)=>{
+            if(err) throw err;
+            console.log(buffer)
 
-            file.getBlobURL(function (err, url) {
-                if (err) throw err
-                var a = document.createElement('a')
-                a.download = file.name
-                a.href = url
-                a.textContent = 'Download ' + file.name
-                document.body.appendChild(a)
-            })
-
-            // Display the file by adding it to the DOM.
-            // Supports video, audio, image files, and more!
-            console.log(typeof(file))
-
-            var div = document.createElement("div");
-            file.appendTo(div);
             
-            div.classList.add("userdata");
-            document.getElementById("uploadData").appendChild(div);
-            
-            })
+            //fs.appendFileSync(DIRECTORY_WIN+file.name,buffer)
+            //console.log("contects :",fs.readFileSync(file.name, "utf8"))
+
+            createDirectory(DIRECTORY_WIN+'\\'+folderName)
+            DIRECTORY_WIN=DIRECTORY_WIN+'\\'+folderName
+            console.log("Path :",DIRECTORY_WIN+'\\'+fileName)
+            fs.appendFileSync(DIRECTORY_WIN+'\\'+fileName,buffer)
+            console.log("after appending :",fs)
+        })
+
+        file.getBlobURL(function (err, url) {
+            if (err) throw err
+            var a = document.createElement('a')
+            a.download = file.name
+            a.href = url
+            a.textContent = 'Download ' + file.name
+            document.body.appendChild(a)
+        })
+
+        // Display the file by adding it to the DOM.
+        // Supports video, audio, image files, and more!
+        console.log(typeof(file))
+        var div = document.createElement("div");
+        file.appendTo(div);
+        
+        div.classList.add("userdata");
+        document.getElementById("uploadData").appendChild(div);
+        
+        })
     }
+
+        
         /**
          * connected-> room . roomID -> emit "${emailID} is connected  green "
          * send_file -> roomID, senderID, date, magnetURL => emit 
@@ -71,9 +95,9 @@
                 alert(data)
             })
 
-        socket.on('share_file',(magnetUrl)=>{
-            console.log("MagnetLink",magnetUrl);
-            downloadMagnetURL(magnetUrl);
+        socket.on('share_file',({magnetURL,fileName})=>{
+            console.log("MagnetLink",magnetURL,fileName);
+            downloadMagnetURL(magnetURL,fileName);
         })
         
         // var sendUsername=()=>{
