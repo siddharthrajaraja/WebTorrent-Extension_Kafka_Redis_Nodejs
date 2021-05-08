@@ -3,10 +3,13 @@ async function forgotPassword(){
     const response=await axios.post('/api/forgotPassword',{emailID:emailID})
     
     if(response.status==200)
-        alert(response.data.flag)
-    if(response.status==401)
+    {
+        //alert(response.data.flag)
+        M.toast({html: response.data.flag, classes: 'rounded green'});
+    }
+        if(response.status==401)
         {
-            alert(response.data.flag)
+            M.toast({html: response.data.flag, classes: 'rounded red'});
         }
            
 }

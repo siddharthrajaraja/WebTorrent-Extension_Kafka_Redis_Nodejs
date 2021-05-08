@@ -12,16 +12,20 @@ async function register(){
 
     if(response.status==201){
         // OK
-        alert(response.data.flag)
-        window.location.href='/login'
+        //alert(response.data.flag)
+        M.toast({html: response.data.flag, classes: 'rounded green', completeCallback: ()=>{window.location.href='/login'}});
+        
     }
     else if(response.status==200){
-        alert("User Exists")
+        //alert("User Exists")
+        M.toast({html: 'User Exists', classes: 'rounded red'});
     }
     else if(response.status==500){
-        alert("Server Error!")
+        //alert("Server Error!")
+        M.toast({html: 'Server Error!', classes: 'rounded red'});
     }
     else{
-        alert("Database Error")
+        //alert("Database Error")
+        M.toast({html: 'Database Error', classes: 'rounded red'});
     }
 }

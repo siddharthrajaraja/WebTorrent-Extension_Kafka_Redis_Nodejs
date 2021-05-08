@@ -57,18 +57,19 @@
         var decoded = jwt_decode(token);
         const socket=io();
     </script>
-    <main > 
+    <main> 
         <%-include('./partials/socket.ejs')%>
         <div class="row card-container">
             <div class="row col s2 card white main-left">
                 <%-include('./partials/serverRooms.ejs')%>
             </div>
-            <div class="col s7 card white main-middle">
+            <div class="col s5 card white main-middle">
                 <%-include('./partials/serverData.ejs')%>
             </div>
-            <div class="col s2 card white main-right">
+            <div class="col s3 card white main-right">
                 <%-include('./partials/serverParticipants.ejs')%>
             </div>
+            
         </div>
 
     </main>
