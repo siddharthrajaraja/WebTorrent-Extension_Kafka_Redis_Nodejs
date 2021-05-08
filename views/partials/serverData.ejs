@@ -5,7 +5,7 @@
         padding: .5em;
     }
     .middle{
-        height: 60%;
+        height: 70%;
         overflow: auto;
     }
     .bottom{
@@ -24,8 +24,8 @@
     }
 </style>
 <div class="top box row">
-    <div class="col s4">
-        <h6>Server Name</h6>
+    <div id="server_name" class="col s4">
+        <h6>ServerName</h6>
     </div>
 </div>
 <div id="uploadData" class="middle box row">
@@ -46,6 +46,7 @@
 
 <script>
   
+
 async function handleFilesUpload(event) {
 
 const uploadFiles = event.target.files;

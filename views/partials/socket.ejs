@@ -96,7 +96,7 @@
 
         socket.on('joined_room',(data)=>{
                 console.log("asert",data);
-                alert(data)
+                M.toast({html:data,classes:'rounded green'})
             })
 
         socket.on('share_file',({magnetURL,fileName})=>{
@@ -181,13 +181,13 @@
                     var obj = JSON.parse(arr[i]);
                     console.log("logob: ",obj);
                     document.getElementById("uploadData").innerHTML += `
-                    <div class="card horizontal col s12 m7">
+                    <div class="card horizontal col s12 m9">
                         <div class="card-stacked">
                             <div class="card-content">`
                             +obj.file+
                             `</div>
                             <div class="card-action">
-                            <button onclick="retrieveFile('`+obj.file+`')">Retrieve File</button>
+                            <button class="btn blue" onclick="retrieveFile('`+obj.file+`')">Retrieve File</button>
                             </div>
                         </div>
                     </div>`

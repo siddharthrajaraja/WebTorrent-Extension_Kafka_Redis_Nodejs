@@ -43,8 +43,12 @@
     {
         Cookies.set('roomId',roomid);
         Cookies.set('roomName',roomName);
+        var grptag = '<h6>'+Cookies.get('roomName')+'</h6>';
+        document.getElementById("server_name").innerHTML = "";
+        
+
       const url = "/api/getRoomMembers?roomID="+roomid;
-      console.log("api url: ", url);
+      console.log("api url: ", url,grptag);
       
       const userObj = {
         roomID: roomid

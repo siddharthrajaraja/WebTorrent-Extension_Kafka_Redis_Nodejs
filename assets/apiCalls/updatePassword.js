@@ -12,9 +12,11 @@ async function updatePassword(){
     
     if(response.status==204)
     {
-        alert("UPDATED!!")
-        window.location.href='/login'
+        //alert("UPDATED!!")
+        M.toast({html: 'Updated', classes: 'rounded green',completeCallback:()=>{ window.location.href='/login' }});
     }
-    else alert(response.data.flag)
+    else {
+        M.toast({html:response.data.flag, classes:'rounded red'})
+    }
     
 }
