@@ -34,6 +34,8 @@
     var instances = M.Modal.init(elems, {});
   });
 
+
+  
     document.getElementById("username").innerText = decoded.firstName + " " + decoded.lastName;
     console.log("Cook: ",Cookies.get('Web_Torrent_Token'),"Deck: ",decoded);
     
@@ -76,6 +78,7 @@
       })
 
       socketImplementation(roomid,roomName);
+      retrieveLogs();
     }
 
     function getAllRooms()
