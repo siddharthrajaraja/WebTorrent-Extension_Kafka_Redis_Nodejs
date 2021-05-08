@@ -23,6 +23,11 @@ module.exports=(server)=>{
             socket.to(roomID).emit('share_file',{'magnetURL':magnetURL,'fileName':fileName})
         })
 
+        socket.on('retrieveFile',({fileName,roomID,roomName})=>{
+            console.log("in sckt js: ",fileName,roomID,roomName);
+            socket.to(roomID).emit('search_file',{'fileName':fileName})
+        })
+
         // socket.on('change_name',(data)=>{
         //     console.log(data)
         //     socket.username=data.username

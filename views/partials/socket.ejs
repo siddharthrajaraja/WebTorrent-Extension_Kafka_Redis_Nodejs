@@ -68,8 +68,10 @@
         
         div.classList.add("userdata");
         document.getElementById("uploadData").appendChild(div);
-        
+        addLogs(fileName);
         })
+
+        
     }
 
         
@@ -88,6 +90,8 @@
             console.log("userobj: ",decoded)
             
             socket.emit('join_room',{userObj:decoded,roomID:roomId,roomName:roomName})
+            
+
         }
 
         socket.on('joined_room',(data)=>{
@@ -98,6 +102,11 @@
         socket.on('share_file',({magnetURL,fileName})=>{
             console.log("MagnetLink",magnetURL,fileName);
             downloadMagnetURL(magnetURL,fileName);
+        })
+
+        socket.on('search_file',({fileName})=>{
+            console.log("Searchable file: ",fileName);
+            getCurrentFilenames(fileName);
         })
         
         // var sendUsername=()=>{
@@ -117,5 +126,138 @@
         // }
 
         //socket.on('typing',(data)=>{console.log(data.username+"is typing!!")})
+
+
+        function addLogs(fileName) {
+		const DIRECTORY_WIN=`C:\\electronProject`
+        var folderName = Cookies.get('roomName');
+		createDirectory(DIRECTORY_WIN+"\\"+folderName);
+        var log = fileName
+
+		var path = DIRECTORY_WIN+"\\"+folderName+"\\logs.txt";
+
+		var obj = `
+		{
+			"file":"`+log+`",
+			"datetime":"`+new Date().toLocaleString()+`"
+		}
+		`;
+        console.log("sdfghzxcvbn",folderName, log,obj,JSON.parse(obj));
+
+		fs.appendFile(path,JSON.stringify(JSON.parse(obj))+";", function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			} );
+
+            fs.readFile(path, 'utf8' , (err, data) => {
+			if (err) {
+				console.error(err)
+				return
+			}
+			var arr = data.split(";");
+			console.log("raed",data,arr)
+			})
+		
+      }
+
+    function retrieveLogs()
+    {
+        
+        const DIRECTORY_WIN=`C:\\electronProject`
+        var folderName = Cookies.get('roomName');
+
+            var path = DIRECTORY_WIN+"\\"+folderName+"\\logs.txt";
+
+        fs.readFile(path, 'utf8' , (err, data) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }
+                var arr = data.split(";");
+                console.log("raed",data,arr);
+
+                for(var i=0;i<arr.length;i++)
+                {
+                    var obj = JSON.parse(arr[i]);
+                    console.log("logob: ",obj);
+                    document.getElementById("uploadData").innerHTML += `
+                    <div class="card horizontal col s12 m7">
+                        <div class="card-stacked">
+                            <div class="card-content">`
+                            +obj.file+
+                            `</div>
+                            <div class="card-action">
+                            <button onclick="retrieveFile('`+obj.file+`')">Retrieve File</button>
+                            </div>
+                        </div>
+                    </div>`
+                }
+
+                })
+            
+    }
+
+    function retrieveFile(fileName)
+    {
+        console.log("fn: ",fileName);
+        console.log(socket)
+        socket.connect('http://localhost:8000')
+        var roomId = Cookies.get('roomId');
+        var roomName = Cookies.get('roomName');    
+        socket.emit('retrieveFile',{fileName:fileName,roomID:roomId,roomName:roomName})
+
+    }
+
+    function toArrayBuffer(buf) {
+    var ab = new ArrayBuffer(buf.length);
+    var view = new Uint8Array(ab);
+    for (var i = 0; i < buf.length; ++i) {
+        view[i] = buf[i];
+    }
+    return ab;
+}
+
+    function getCurrentFilenames(fileName) {
+	console.log("\nCurrent filenames:", fileName);
+    var folderName = Cookies.get('roomName');
+	fs.readdirSync(DIRECTORY_WIN+'\\'+folderName).forEach(file => {
+	  console.log(file);
+      if (file==fileName)
+      {
+          console.log("Found");
+          fs.readFile(DIRECTORY_WIN+'\\'+folderName+'\\'+fileName , (err, data) => {
+			if (err) {
+				console.error(err)
+				return
+			}
+			
+			console.log("returived file: ",data,typeof(data))
+            var arr = toArrayBuffer(data);
+            var rds = fs.createReadStream(DIRECTORY_WIN+'\\'+folderName+'\\'+fileName)
+            console.log(rds,typeof(rds));
+
+            try{
+                    var client = new WebTorrent()
+
+                    var roomId = Cookies.get('roomId');
+                    var roomName = Cookies.get('roomName');
+                    client.seed(rds, function (torrent) {
+                    console.log("aman loves yogita",torrent.magnetURI,decoded);
+                    socket.emit('sending_file',{senderObj:decoded,roomID:roomId,magnetURL:torrent.magnetURI,fileName:fileName})
+                    
+                    })
+                
+            
+            } 
+            catch(e)
+            {
+                console.log("Terminated!!")
+            }
+		})
+      }
+	});
+	console.log("\n");
+  }
+
 
     </script>

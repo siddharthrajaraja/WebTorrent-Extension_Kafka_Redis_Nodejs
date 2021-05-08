@@ -23,7 +23,8 @@
 
     const DIRECTORY_LINUX=`/home/siddharth/Documents/Projects/css-portfolio/`
     const DIRECTORY_WIN=`C:\\electronProject`
-        const fs=require('fs')
+        const fs=require('fs');
+
 
         var createDirectory=(dir)=>{
             console.log("Creating :",dir)
@@ -33,14 +34,7 @@
         }
     </script>
     <script>
-    function editLogs()
-    {
-        var log = document.getElementById("logs").value;
-        fs.appendFile('`C:\\electronProject\\datalogs.txt`',log,(err)=>{
-            if (err) throw err;
-            console.log("logged data in");
-        });
-    }
+    
     
     async function downloadMagnetURL(){
         let DIRECTORY_WIN=`C:\\electronProject`
